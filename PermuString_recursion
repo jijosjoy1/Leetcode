@@ -1,0 +1,50 @@
+package asds;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Permutaion_String {
+
+
+public static void main(String args[])
+{
+String input="zom";
+
+
+Set<String> resut=new HashSet<>();
+permuation(input,"", resut);
+
+System.out.println(resut);
+
+	
+
+
+}
+
+private static void permuation(String input,String output, Set<String> resut) {
+	
+	if (input.isEmpty()) {
+		resut.add(output);
+        return;
+    }
+	
+	for(int i1=0;i1<input.length();i1++)
+	{
+		
+		
+		String newinput = input.substring(0,i1)+input.substring(i1+1);
+		String newoutput = output + input.charAt(i1);
+		permuation(newinput,newoutput, resut);
+		
+		
+		
+		
+	}
+	
+
+}
+	// TODO Auto-generated method stub
+
+
+	
+}
