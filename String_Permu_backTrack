@@ -1,0 +1,48 @@
+package asds;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Permutaion_String {
+
+
+public static void main(String args[])
+{
+String a="zom";
+char[] s = a.toCharArray();
+
+Set<String> resut=new HashSet<>();
+permuation(s,0,resut);
+
+System.out.println(resut);
+
+	
+
+
+}
+
+private static void permuation(char[] s, int start, Set<String> resut) {
+	if(start==s.length)
+	{
+	  resut.add(String.copyValueOf(s));
+	}
+for(int i=start;i<s.length;i++)
+{
+
+	swap(i,start,s);
+	permuation(s,start+1,resut);
+	swap(i,start,s);
+}
+}
+	// TODO Auto-generated method stub
+
+private static void swap(int i, int start, char[] s) {
+
+	char temp=s[i];
+	 s[i]=s[start];
+	 s[start]=temp;
+	
+	
+}
+	
+}
