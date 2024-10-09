@@ -1,0 +1,53 @@
+package asds;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Sliding_window_Subarray {
+
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>(Arrays.asList(1, 5, 4, 3, 5));
+        int k = 3;
+        System.out.println(maxSum(nums, k));
+    }
+
+    private static int maxSum(List<Integer> nums, int k) {
+        int sum = 0;
+        int i = 0;
+        int j = 0;
+        int[] freq = new int[1000];
+        int ans = 0;
+        int length = nums.size();
+
+        while (j < length) {
+            // Add the current element to the sum and update frequency
+            sum += nums.get(j);
+            freq[nums.get(j)]++;
+
+            // Check if the window size is k
+            if (j - i + 1 == k) {
+                // Check if all elements in the window are distinct
+                boolean distinct = true;
+                for (int x = i; x <= j; x++) {
+                    if (freq[nums.get(x)] > 1) {
+                        distinct = false;
+                        break;
+                    }
+                }
+
+                // Update the maximum sum if the window is distinct
+                if (distinct) {
+                    ans = Math.max(ans, sum);
+                }
+
+                // Slide the window by removing the element at the start
+                sum -= nums.get(i);
+                freq[nums.get(i)]--;
+                i++;
+            }
+            j++;
+        }
+        return ans;
+    }
+}
