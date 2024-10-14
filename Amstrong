@@ -1,0 +1,16 @@
+package asds;
+
+public class Amstrong {
+
+public static void main(String[] args)
+{
+int original=153;
+int num=original;
+int nums = String.valueOf(num).length();
+
+ int sum=String.valueOf(num).chars().map(ch->Character.digit(ch, 10))
+ .map(digit->(int)(Math.pow(digit, nums))) .sum(); 
+ System.out.println(sum);
+
+}
+}
