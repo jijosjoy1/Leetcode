@@ -1,0 +1,19 @@
+package asds;
+
+import java.util.stream.IntStream;
+
+public class PrimeorNot {
+
+
+public static void main(String[] args)
+{
+	int num=9;
+	boolean prime;
+	if(num==0||num==1)
+	prime=false;
+	else if(num==2)
+	prime=true;
+	else prime=IntStream.rangeClosed(2, num/2).noneMatch(x->num%x==0);
+	 System.out.println(prime);
+}
+}
