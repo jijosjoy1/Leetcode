@@ -1,0 +1,74 @@
+package asds;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class momoMultithreading {
+
+public static void main(String[]args)
+{
+	momoMultithreading key= new momoMultithreading();
+	
+	Queue<Integer>que= new LinkedList<Integer>();
+	int size=10;
+	
+	Thread Producer = new Thread(new Runnable()
+			{
+               int count=0;
+				@Override
+				public void run() {
+				while(true)
+				{
+					synchronized(key) 
+					{   try {
+						
+						while(que.size()==10)
+							key.wait();
+						que.offer(count++);
+						   key.notifyAll();
+							Thread.sleep(1000);
+							System.out.println("Momo producer"+"queusiz"+que.size());
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		        }
+				}
+				}
+});
+
+Thread Consumer= new Thread (new Runnable()
+		{
+	     public void run()
+	     {
+	    	 while(true)
+	    	 {
+	    		 synchronized(key)
+	    		 { try {
+						
+						while(que.size()==0)
+							key.wait();
+						  
+	    			 que.poll();
+	    			 key.notifyAll();
+	    			
+							Thread.sleep(1000);
+							System.out.println("Momo consumer"+"queusiz"+que.size());
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	    		 }
+	    	 }
+	     }
+		});
+
+Consumer.start();
+
+Producer.start();
+
+}
+
+}
+	
+
