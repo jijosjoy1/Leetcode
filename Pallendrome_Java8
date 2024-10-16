@@ -1,0 +1,18 @@
+package asds;
+
+import java.util.stream.IntStream;
+
+public class Pallendrome {
+	
+	public static void main(String[] args)
+	{
+		String value=String.valueOf("malayalams");
+		
+		int len = value.length();
+		
+		 boolean answer = IntStream.range(0, len/2).allMatch((index)->value.charAt(index)==value.charAt(len-index-1));
+		 System.out.println(answer);
+		
+	}
+
+}
