@@ -1,0 +1,34 @@
+package asds;
+
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
+public class OddEven {
+	
+public static void main(String[]args)
+{
+  List<Integer>oddEven= Arrays.asList(30,40,20,56,21);
+ Map<Boolean, List<Integer>> ab = oddEven.stream().collect(Collectors.partitioningBy(i->i%2==0));
+ 
+ for(Entry<Boolean, List<Integer>>entry:ab.entrySet())
+ {
+	 if (entry.getKey())
+	 {
+		 System.out.println(entry.getValue());
+	 }
+	 else
+	 {
+		 System.out.println(entry.getValue());
+	 }
+ }
+ 
+ 
+  
+  
+}
+
+}
