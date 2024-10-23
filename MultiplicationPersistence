@@ -1,0 +1,21 @@
+package asds;
+
+public class ProductPersistence {
+    public static void main(String[] args) {
+        int num = 27;
+        int count = 0;
+
+        while (num >= 10) { // Continue until num is a single digit
+            int multiply = 1;
+            while (num > 0) {
+                int digit = num % 10;
+                multiply *= digit;
+                num /= 10; // Update num to remove the last digit
+            }
+            num = multiply; // Update num to the product of its digits
+            count++;
+        }
+
+        System.out.println("Persistence: " + count);
+    }
+}
