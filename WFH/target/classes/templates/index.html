@@ -1,0 +1,46 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WFH Requests</title>
+</head>
+<body>
+<h1>WFH Requests</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Approver ID</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="request : ${requests}">
+        <td th:text="${request.id}"></td>
+        <td th:text="${request.name}"></td>
+        <td th:text="${request.emailId}"></td>
+        <td th:text="${request.approverId}"></td>
+        <td th:text="${request.fromDate}"></td>
+        <td th:text="${request.toDate}"></td>
+        <td th:text="${request.status}"></td>
+        <td>
+            <a th:href="@{/web/request/{id}/approve(id=${request.id})}">Approve</a> |
+            <a th:href="@{/web/request/{id}/reject(id=${request.id})}">Reject</a>
+        </td>
+    </tr>
+</table>
+
+<h2>Submit New WFH Request</h2>
+<form action="#" th:action="@{/web/request}" th:method="post">
+    <input type="text" name="name" placeholder="Name" required/>
+    <input type="text" name="emailId" placeholder="Email" required/>
+    <input type="text" name="approverId" placeholder="Approver ID" required/>
+    <input type="date" name="fromDate" required/>
+    <input type="date" name="toDate" required/>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
